@@ -1,0 +1,3 @@
+interface OutletProps {
+  messageApi: AntdMessageInstance;
+}
