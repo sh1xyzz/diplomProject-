@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { SendOutlined, ArrowLeftOutlined } from "@ant-design/icons"
-import { Form, Input, Button, Select, Typography, message, Divider } from "antd";
+import { SendOutlined, ArrowLeftOutlined, UploadOutlined } from "@ant-design/icons"
+import { Form, Input, Button, Select, Typography, message, Divider, Upload } from "antd";
 import axios from "axios";
 import { DefaultLayout } from "components/DefaultLayout";
 import { useTranslation } from "react-i18next";
@@ -32,21 +32,40 @@ export const CreateCoursesView: React.FC = () => {
     fetchTags();
   }, []);
 
+  const [fileList, setFileList] = useState<any[]>([]);
+
+  const handleUploadChange = ({ fileList }: any) => {
+    setFileList(fileList);
+  };
+
   const onFinish = async (values: any) => {
   try {
-    const response = await axios.post("http://localhost:8000/api/courses", values, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const formData = new FormData();
+
+    formData.append("title", values.title);
+    formData.append("description", values.description);
+    formData.append("detail", values.detail);
+
+   
+    values.tags.forEach((tagId: number) => formData.append("tags[]", tagId.toString()));
+
+    
+    if (fileList.length > 0) {
+      formData.append("image", fileList[0].originFileObj);
+    }
+
+    const response = await axios.post("http://localhost:8000/api/courses", formData);
+    
     console.log("Response:", response.data);
     message.success(t("createCourseView.success"));
     form.resetFields();
+    setFileList([]);
   } catch (error: any) {
-    console.error("Error creating course:", error);
+    console.error("Error creating course:", error.response?.data || error.message);
     message.error(t("createCoursesView.errorCreate"));
   }
 };
+
 
 
   return (
@@ -73,6 +92,18 @@ export const CreateCoursesView: React.FC = () => {
             </Form.Item>
 
             <Form.Item
+              label={<span className="text-base">{t("createCourseView.detailCourses")}</span>}
+              name="detail"
+              rules={[{ required: false }]}
+            >
+              <TextArea
+                size="large"
+                placeholder={t("createCourseView.placeholderDetail")}
+                rows={6}
+            />
+            </Form.Item>
+
+            <Form.Item
               label={<span className="text-base">{t("createCourseView.tagsCourses")}</span>}
               name="tags"
               rules={[{ required: true, message: t("createCourseView.messageRulesTag") }]}
@@ -85,6 +116,26 @@ export const CreateCoursesView: React.FC = () => {
                 ))}
               </Select>
             </Form.Item>
+
+            <Form.Item
+                label={<span className="text-base">{t("createCourseView.courseImage")}</span>}
+                name="image"
+                valuePropName="fileList"
+                getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
+                extra={t("createCourseView.imageHelp")}
+              >
+                <Upload
+                  name="image"
+                  beforeUpload={() => false}
+                  onChange={handleUploadChange}
+                  fileList={fileList}
+                  maxCount={1}
+                  accept="image/*"
+                  listType="picture"
+                >
+                  <Button icon={<UploadOutlined />}>{t("createCourseView.btnUploadImage")}</Button>
+                </Upload>
+              </Form.Item>
 
             <Divider />
 

@@ -37,10 +37,10 @@ export const SettingsView = () => {
         return (
           <div className="text-white">
             <Title level={3} className="text-white mb-2">
-              Security Settings
+              {t("settings.titleSecurity")}
             </Title>
             <Paragraph className="text-gray-400">
-              Change your password, set up 2FA, and manage sessions.
+              {t("settings.changePassword")}
             </Paragraph>
           </div>
         );
@@ -53,10 +53,9 @@ export const SettingsView = () => {
     <DefaultLayout>
       <section className="py-12 px-4">
         <div className="bg-gray-900 p-6 rounded-xl shadow-md flex flex-col md:flex-row">
-          {/* Sidebar */}
           <div className="w-full md:w-1/4 border-r border-gray-700 pr-4 mb-6 md:mb-0">
             <Title level={4} className="text-white">
-              {t("settings.title") || "Settings"}
+              {t("settings.title")}
             </Title>
             <Divider className="border-gray-700" />
             <Menu
@@ -74,7 +73,6 @@ export const SettingsView = () => {
             </Menu>
           </div>
 
-          {/* Main content */}
           <div className="w-full md:w-3/4 pl-0 md:pl-6">{renderContent()}</div>
         </div>
       </section>

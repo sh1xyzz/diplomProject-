@@ -54,3 +54,15 @@ type Course = {
   teacher: string;
   goals: string[];
 };
+
+interface Course {
+  id: number;
+  title: string;
+  description: string;
+  tags: { id: number; name: string }[];
+  created_at: string;
+  updated_at: string;
+  teacher?: string;
+  goals?: string[];
+  image?: string;
+}

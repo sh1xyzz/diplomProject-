@@ -1,9 +1,6 @@
 import React from "react";
 
-import { Typography, Image } from "antd";
-import demon from "assets/image/demon.jpg"
-import girl from "assets/image/girl.jpg"
-import onepiece from "assets/image/onepiec.jpg"
+import { Typography } from "antd";
 import { MainCard } from "components/Cards";
 import { DefaultLayout } from "components/DefaultLayout";
 import { useTranslation } from "react-i18next";
@@ -71,31 +68,6 @@ export const MainView = () => {
             {t("mainView.subscribeSubtext")}
           </Text>
         </div>
-
-        <div className="text-start mb-20 bg-gray-900 p-10 rounded-xl">
-           <Title>{t("mainView.galleryTitle")}</Title>
-           <Text className="text-gray-400 mb-6 block">{t("mainView.subtitleGallery")}</Text>
-
-           <Image.PreviewGroup>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <Image
-                  src={girl}
-                  alt="Project 1"
-                  className="rounded-md"
-                />
-                <Image
-                  src={demon}
-                  alt="Project 2"
-                  className="rounded-md"
-                />
-                <Image
-                  src={onepiece}
-                  alt="Class activity"
-                  className="rounded-md"
-                />
-              </div>
-            </Image.PreviewGroup>
-          </div>
       </section>
     </DefaultLayout>
   );

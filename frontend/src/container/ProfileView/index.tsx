@@ -14,18 +14,22 @@ import { Avatar, Button, Divider, Typography, Card } from "antd";
 import avatar from "assets/image/avatar.jpg";
 import { DefaultLayout } from "components/DefaultLayout";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const { Title, Text, Paragraph } = Typography;
 
 export const ProfileView = () => {
-
   const [user, setUser] = useState<{
-     id: number;
+    id: number;
     name: string;
     role: string;
     created_at: string;
     status?: string;
-  } | null>(null)
+  } | null>(null);
+
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -35,8 +39,12 @@ export const ProfileView = () => {
   }, []);
 
   if (!user) {
-    return <Paragraph className="text-center text-white">Loading...</Paragraph>;
+    return <Paragraph className="text-center text-white">{t("profileView.loading")}</Paragraph>;
   }
+
+  const goToAdminPanel = () => {
+    navigate("/admin");
+  };
 
   return (
     <DefaultLayout>
@@ -48,7 +56,7 @@ export const ProfileView = () => {
               <Title level={4} className="text-white m-0">
                 {user.name}
               </Title>
-              <Text className="text-green-400 block text-sm">Active now</Text>
+              <Text className="text-green-400 block text-sm">{t("profileView.textActive")}</Text>
             </div>
           </div>
         </div>
@@ -57,43 +65,42 @@ export const ProfileView = () => {
           <div className="flex items-center justify-between">
             <div className=" items-center gap-6">
               <Text>
-                <UserOutlined />{" "}
-                Account Information
+                <UserOutlined /> {t("profileView.textAccount")}
               </Text>
               <Divider />
               <div>
                 <div className="flex flex-row items-center gap-2">
                   <Button icon={<IdcardTwoTone />} size="large" />
                   <div>
-                    <Text className="text-gray-400">User Id</Text>
+                    <Text className="text-gray-400">{t("profileView.textUserId")}</Text>
                     <Paragraph>{user.id}</Paragraph>
                   </div>
                 </div>
                 <div className="flex flex-row items-center gap-2">
                   <Button icon={<UserOutlined />} size="large" />
                   <div>
-                    <Text className="text-gray-400">Username</Text>
+                    <Text className="text-gray-400">{t("profileView.textUsername")}</Text>
                     <Paragraph>{user.name}</Paragraph>
                   </div>
                 </div>
                 <div className="flex flex-row items-center gap-2">
                   <Button icon={<CalendarOutlined />} size="large" />
                   <div>
-                    <Text className="text-gray-400">Registration date</Text>
+                    <Text className="text-gray-400">{t("profileView.textData")}</Text>
                     <Paragraph>{dayjs(user.created_at).format("DD MMM YYYY")}</Paragraph>
                   </div>
                 </div>
                 <div className="flex flex-row items-center gap-2">
                   <Button icon={<IdcardTwoTone />} size="large" />
                   <div>
-                    <Text className="text-gray-400">Account Status</Text>
-                    <Paragraph>Active</Paragraph>
+                    <Text className="text-gray-400">{t("profileView.textStatus")}</Text>
+                    <Paragraph>{t("profileView.paragraphActive")}</Paragraph>
                   </div>
                 </div>
                 <div className="flex flex-row items-center gap-2">
                   <Button icon={<SafetyOutlined />} size="large" />
                   <div>
-                    <Text className="text-gray-400">Role</Text>
+                    <Text className="text-gray-400">{t("profileView.textRole")}</Text>
                     <Paragraph>{user.role}</Paragraph>
                   </div>
                 </div>
@@ -102,50 +109,48 @@ export const ProfileView = () => {
 
             <div className="flex flex-col items-center gap-4">
               <Button icon={<CameraOutlined />} type="text" size="large">
-                Update Avatar
+                {t("profileView.btnUpdate")}
               </Button>
               <Avatar src={avatar} size={128} />
               <Button icon={<UploadOutlined />} size="large">
-                Select Image File
+                {t("profileView.btnSelectImage")}
               </Button>
-              <Button
-                className="bg-green-500"
-                icon={<CloudDownloadOutlined />}
-                size="large"
-              >
-                Upload Avatar
+              <Button className="bg-green-500" icon={<CloudDownloadOutlined />} size="large">
+                {t("profileView.btnUpload")}
               </Button>
             </div>
           </div>
 
           <Divider className="bg-gray-700 my-6" />
-          <div className="flex gap-4 flex-wrap justify-center">
+
+          <div className="flex gap-4 flex-wrap justify-center mb-5">
             {user.role === "admin" && (
               <Button
                 type="primary"
                 icon={<UserSwitchOutlined />}
                 size="large"
                 className="w-full bg-purple-700"
+                onClick={goToAdminPanel}
               >
-                Admin Panel
+                {t("profileView.btnAdmin")}
               </Button>
             )}
           </div>
+
           <div>
             <Paragraph>
-              <span className="text-green-500"> $ </span>User profile loaded
-              successfully
+              <span className="text-green-500">{t("profileView.symbol")} </span>{t("profileView.spanLoaded")}
             </Paragraph>
           </div>
           <div>
             <Paragraph>
-              <span className="text-green-500"> $ </span>{dayjs(user.created_at).format("DD MMM YYYY hh:mm:ss")}
+              <span className="text-green-500">{t("profileView.symbol")} </span>
+              {dayjs(user.created_at).format("DD MMM YYYY hh:mm:ss")}
             </Paragraph>
           </div>
           <div>
             <Paragraph>
-              <span className="text-green-500"> $ </span>System status: online |
-              Server load: optional
+              <span className="text-green-500">{t("profileView.symbol")} </span>{t("profileView.spanStatus")}
             </Paragraph>
           </div>
         </Card>

@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 export const Header: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [userRole, setUserRole] = useState("");
   const [isActive, setIsActive] = useState(false);
 
   const [loginOpen, setLoginOpen] = useState(false);
@@ -22,8 +23,10 @@ export const Header: React.FC = () => {
     const user = localStorage.getItem("user");
 
     if (token && user) {
+      const parsedUser = JSON.parse(user);
       setIsLoggedIn(true);
-      setUsername(JSON.parse(user).name || "");
+      setUsername(parsedUser.name || "Unknown");
+      setUserRole(parsedUser.role || "user");
       setIsActive(true);
     }
   }, []);
@@ -46,11 +49,13 @@ export const Header: React.FC = () => {
     localStorage.setItem("user", JSON.stringify(userData.user));
 
     setIsLoggedIn(true);
-    setUsername(userData.user.name || "");
+    setUsername(userData.user.name || "Unknown");
+    setUserRole(userData.user.role || "user");
     setIsActive(true);
 
     message.success(t("header.messageSuccess"))
   };
+
 
   const menuItems = [
     {
@@ -92,7 +97,6 @@ export const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="text-xl font-bold cursor-pointer"><Link to="/">{t("header.title")}</Link></div>
 
-          {/* Center navigation */}
           <nav className="space-x-6 text-lg">
             <Link to="/" className="text-white hover:gray-300">
               {t("header.catalogHome")}
@@ -105,7 +109,6 @@ export const Header: React.FC = () => {
             </Link>
           </nav>
 
-          {/* Language section */}
           <div className="flex items-center space-x-4 relative">
             <Dropdown menu={languageMenu} trigger={["click"]}>
               <Button type="text" size="large">
@@ -113,7 +116,6 @@ export const Header: React.FC = () => {
               </Button>
             </Dropdown>
 
-            {/* Auth section */}
             {isLoggedIn ? (
               <Dropdown
                 menu={{ items: menuItems }}
@@ -121,7 +123,7 @@ export const Header: React.FC = () => {
                 <div className="flex items-center space-x-2">
                   <div className="flex flex-col items-end">
                     <span className="font-semibold cursor-pointer">{username}</span>
-                    <span className="text-sm text-gray-400">user</span>
+                    <span className="text-sm text-gray-400">{userRole}</span>
                   </div>
                   <Badge dot={isActive} color={isActive ? "green" : "red"}>
                     <Avatar

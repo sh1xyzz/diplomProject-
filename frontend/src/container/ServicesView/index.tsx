@@ -12,41 +12,41 @@ import { useTranslation } from "react-i18next";
 
 const { Title, Text, Paragraph } = Typography;
 
-const servicesData = [
-  {
-    icon: <ShopOutlined className="text-3xl text-blue-400" />,
-    title: "Marketplace Integration",
-    description:
-      "Connect your store and start selling with our advanced tools.",
-    details:
-      "We provide tools and support to integrate with platforms like Shopify, Etsy, and WooCommerce. Our team ensures seamless onboarding and helps manage your inventory, payments, and logistics.",
-  },
-  {
-    icon: <RocketOutlined className="text-3xl text-green-400" />,
-    title: "Startup Booster",
-    description: "Get tailored support to launch your business idea fast.",
-    details:
-      "We help you validate your idea, prepare MVPs, connect with investors, and understand the competitive landscape to speed up your product’s launch and growth.",
-  },
-  {
-    icon: <SettingOutlined className="text-3xl text-yellow-400" />,
-    title: "Automation Tools",
-    description: "Automate your daily tasks with our built-in solutions.",
-    details:
-      "Our automation suite includes scheduling, CRM integration, and marketing automation features. Save hours of routine work and focus on what matters most.",
-  },
-  {
-    icon: <CustomerServiceOutlined className="text-3xl text-pink-400" />,
-    title: "24/7 Support",
-    description: "Our team is ready to help anytime, anywhere.",
-    details:
-      "Whether you’re launching a new feature or dealing with unexpected issues, our multilingual support team is always available to assist via chat, email, or phone.",
-  },
-];
-
 export const ServicesView = () => {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState<number | null>(null);
+
+  const servicesData = [
+  {
+    icon: <ShopOutlined className="text-3xl text-blue-400" />,
+    title: t("servicesView.titleMarketplace"),
+    description:
+      t("servicesView.descriptionMarketplace"),
+    details:
+      t("servicesView.detailsMarketplace"),
+  },
+  {
+    icon: <RocketOutlined className="text-3xl text-green-400" />,
+    title: t("servicesView.titleStartup"),
+    description: t("servicesView.descriptionStartup"),
+    details:
+      t("servicesView.detailsStartup"),
+  },
+  {
+    icon: <SettingOutlined className="text-3xl text-yellow-400" />,
+    title: t("servicesView.titleAutomation"),
+    description: t("servicesView.descriptionAutomation"),
+    details:
+      t("servicesView.detailsAutomation"),
+  },
+  {
+    icon: <CustomerServiceOutlined className="text-3xl text-pink-400" />,
+    title: t("servicesView.titleSupport"),
+    description: t("servicesView.descriptionSupport"),
+    details:
+      t("servicesView.detailsSupport"),
+  },
+];
 
   return (
     <DefaultLayout>

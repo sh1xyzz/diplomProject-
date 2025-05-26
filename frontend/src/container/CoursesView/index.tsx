@@ -14,6 +14,7 @@ const { Search } = Input;
 export const CoursesView = () => {
   const { t } = useTranslation();
 
+  const [user, setUser] = useState<{ id: number; name: string; role: string } | null>(null);
   const [search, setSearch] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,6 +24,15 @@ export const CoursesView = () => {
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -79,6 +89,7 @@ export const CoursesView = () => {
               type="primary"
               icon={<PlusOutlined />}
               size="large"
+              disabled={!user}
               onClick={() => navigate("/add-course")}
             >
               {t("coursesView.addCourse")}

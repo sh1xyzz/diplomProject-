@@ -17,13 +17,11 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white pt-10 pb-6 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
-        {/* Logo and About */}
         <div>
           <h2 className="text-2xl font-bold mb-2">{t("footer.logoText")}</h2>
           <p className="text-gray-400">{t("footer.aboutText")}</p>
         </div>
 
-        {/* Links: Company */}
         <div>
           <h3 className="text-xl font-semibold mb-2">Company</h3>
           <ul className="space-y-1">
@@ -45,7 +43,6 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Links: Support */}
         <div>
           <h3 className="text-xl font-semibold mb-2">
             {t("footer.linkSupport")}
@@ -69,7 +66,6 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Contact Info */}
         <div>
           <h3 className="text-xl font-semibold mb-2">
             {t("footer.linkContact")}
@@ -122,7 +118,6 @@ export const Footer: React.FC = () => {
         </a>
       </div>
 
-      {/* Copyright */}
       <div className="mt-6 text-center text-gray-500 text-sm">
         {t("footer.copyText")}
       </div>
