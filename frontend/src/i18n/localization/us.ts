@@ -266,6 +266,7 @@ export const us = {
         columnsEmail: "Email",
         columnsMessage: "Message",
         columnsActions: "Actions",
+        columnsReply: "Reply",
         btnReply: "Reply",
         btnDelete: "Delete",
         popconfirmTitle: "Are you sure to delete this message?",
@@ -278,9 +279,8 @@ export const us = {
         replySent: "Reply sent successfully",
         replyError: "Failed to send reply",
         emptyReply: "Reply message cannot be empty",
-        Title: "User Messages"
+        Title: "User Messages",
       },
-
 
       detailCourse: {
         notFound: "Not found",

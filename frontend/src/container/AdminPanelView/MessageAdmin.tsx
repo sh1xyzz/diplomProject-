@@ -142,7 +142,6 @@ export const MessageAdmin = () => {
       );
 
       if (response.data.success) {
-        // Добавляем новое сообщение в чат
         const newReply = {
           id: Date.now(),
           message: replyText,
@@ -153,7 +152,6 @@ export const MessageAdmin = () => {
         setCurrentChatMessages(prev => [...prev, newReply]);
         setReplyText("");
         
-        // Обновляем общий список сообщений
         fetchMessages();
         message.success("Ответ отправлен");
       }
@@ -213,7 +211,7 @@ export const MessageAdmin = () => {
       ),
     },
     {
-      title: "Відповіді",
+      title: t("messageCourseView.columnsReply"),
       dataIndex: "replies",
       key: "replies",
       render: (replies: any[]) => (
