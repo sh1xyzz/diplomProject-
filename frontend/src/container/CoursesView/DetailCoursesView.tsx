@@ -66,7 +66,7 @@ export const DetailCoursesView: React.FC = () => {
 
   return (
     <DefaultLayout>
-      <section className="max-w-4xl mx-auto p-6 bg-gray-900 rounded-xl shadow-md mb-[50px]">
+      <section className="max-w-4xl mx-auto p-6 bg-[#1c1c28] rounded-xl shadow-md mb-[50px]">
         {course.image && (
           <img
             src={`http://localhost:8000${course.image}`}
@@ -107,7 +107,7 @@ export const DetailCoursesView: React.FC = () => {
 
         {course.goals && (
           <div className="mb-6">
-            <Text className="text-white font-semibold block mb-2">{t("detailCourse.textWhat")}</Text>
+            <Text className="font-semibold block mb-2">{t("detailCourse.textWhat")}</Text>
             <ul className="list-disc list-inside text-gray-300">
               {course.goals.map((goal, i) => (
                 <li key={i}>{goal}</li>

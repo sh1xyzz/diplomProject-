@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-gray-900 text-white pt-10 pb-6 px-6">
+    <footer className="bg-[#0e0e13] border-t border-gray-700 pt-10 pb-6 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
           <h2 className="text-2xl font-bold mb-2">{t("footer.logoText")}</h2>

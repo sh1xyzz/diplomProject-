@@ -5,7 +5,6 @@ import { MainCard } from "components/Cards";
 import { DefaultLayout } from "components/DefaultLayout";
 import { useTranslation } from "react-i18next";
 
-
 const { Text, Title } = Typography;
 
 export const MainView = () => {
@@ -13,43 +12,44 @@ export const MainView = () => {
 
   const cardsData = [
     {
-      title: "Business Tools",
-      subtitle: "All the tools you need to grow",
-      categories: ["CRM", "Analytics", "Billing"],
+      title: t("mainView.titleLessons"),
+      subtitle: t("mainView.subtitleLessons"),
+      categories: [t("mainView.Presentations"), t("mainView.Assignments"), t("mainView.Quizzes")],
     },
     {
-      title: "Community",
-      subtitle: "Connect with other founders",
-      categories: ["Forum", "Events", "Networking"],
+      title: t("mainView.titleSchedule"),
+      subtitle: t("mainView.subtitleSchedule"),
+      categories: [t("mainView.Classes"), t("mainView.Consultations"), t("mainView.Exams")],
     },
     {
-      title: "Learning",
-      subtitle: "Educational materials",
-      categories: ["Courses", "Webinars", "E-books"],
+      title: t("mainView.titleNews"),
+      subtitle: t("mainView.subTitleNews"),
+      categories: [t("mainView.SchoolNews"), t("mainView.Olympiads"), t("mainView.Clubs")],
     },
     {
-      title: "Support",
-      subtitle: "We're here to help",
-      categories: ["FAQ", "Chat", "Contact"],
+      title: t("mainView.titleAbout"),
+      subtitle: t("mainView.subtitleAbout"),
+      categories: [t("mainView.Bio"), t("mainView.Contacts"), t("mainView.Teaching")],
     },
     {
-      title: "Marketplace",
-      subtitle: "Sell and promote products",
-      categories: ["Services", "Jobs", "Promotions"],
+      title: t("mainView.titleExtra"),
+      subtitle: t("mainView.subtitleExtra"),
+      categories: [t("mainView.YouTube"), t("mainView.Platforms"), t("mainView.Books")],
     },
     {
-      title: "Profile",
-      subtitle: "Your account info",
-      categories: ["Settings", "Security", "Preferences"],
+      title: t("mainView.titleFeedback"),
+      subtitle: t("mainView.subtitleFeedback"),
+      categories: [t("mainView.Contact"), t("mainView.Questions"), t("mainView.Suggestions")],
     },
   ];
+
 
   return (
     <DefaultLayout>
       <section className="py-12 px-4">
-        <div className="text-start mb-10 bg-gray-900 p-10 rounded-xl">
+        <div className="text-start mb-10 bg-[#1c1c28] p-10 rounded-xl">
           <Title>{t("mainView.titleText")}</Title>
-          <Text className="text-gray-400">{t("mainView.subtitleText")}</Text>
+          <Text className="text-gray-400 text-base">{t("mainView.subtitleText")}</Text>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {cardsData.map((card, index) => (
@@ -62,7 +62,7 @@ export const MainView = () => {
           ))}
         </div>
 
-        <div className="text-start mb-20 bg-gray-900 p-10 rounded-xl">
+        <div className="text-start mb-20 bg-[#171722] p-10 rounded-xl">
           <Title>{t("mainView.subscribeTitle")}</Title>
           <Text className="text-gray-400">
             {t("mainView.subscribeSubtext")}

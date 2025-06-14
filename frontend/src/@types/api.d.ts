@@ -12,7 +12,6 @@ type AuthContextType = {
   logout: () => void;
 };
 
-
 interface HeaderProps {
   isLoggedIn: boolean;
   username: string;
@@ -66,3 +65,31 @@ interface Course {
   goals?: string[];
   image?: string;
 }
+
+interface Reply {
+  id: number;
+  message: string;
+  from_admin: boolean;
+  created_at: string;
+}
+
+interface Message {
+  id: number;
+  name: string;
+  email: string;
+  message: string;
+  replies?: { id: number; message: string; from_admin: boolean }[];
+}
+
+type Reply = {
+  id: number;
+  message: string;
+  from_admin: boolean;
+};
+
+type MessageType = {
+  id: number;
+  name: string;
+  message: string;
+  replies: Reply[];
+};

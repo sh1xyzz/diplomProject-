@@ -15,36 +15,46 @@ export const LoginWindow: React.FC<LoginWindowProps> = ({ onSuccess, onClose }) 
   const [isRegistration, setIsRegistration] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
+  e.preventDefault();
+  setError("");
 
-    if (!agree) {
-      setError(t("loginWindow.agreeError"));
-      return;
+  if (!agree) {
+    setError(t("loginWindow.agreeError"));
+    return;
+  }
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    // Log raw response if not JSON
+    if (!response.ok) {
+      const text = await response.text();
+      console.error("Non-JSON response:", text);
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+    const data = await response.json();
 
-      const data = await response.json();
-
-      if (response.ok && data.status === "ok") {
-        onSuccess(data);
-        onClose();
-      } else {
-        setError(data.message || t("loginWindow.loginFailed"));
-      }
-    } catch (err) {
-      setError(t("loginWindow.serverError"));
-      console.error(err);
+    if (response.ok && data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      console.log("Login success", data);
+      onSuccess(data);
+      onClose();
+    } else {
+      setError(data.message || t("loginWindow.loginFailed"));
     }
-  };
+  } catch (err) {
+    setError(t("loginWindow.serverError"));
+    console.error("Ошибка входа:", err);
+  }
+};
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

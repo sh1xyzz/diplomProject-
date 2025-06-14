@@ -65,13 +65,10 @@ export const CreateCoursesView: React.FC = () => {
     message.error(t("createCoursesView.errorCreate"));
   }
 };
-
-
-
   return (
     <DefaultLayout>
       <section className="py-12 px-4 max-w-3xl mx-auto">
-        <div className="bg-gray-900 p-8 rounded-xl">
+        <div className="bg-[#1c1c28] p-8 rounded-xl">
           <Title level={2} className="text-center mb-6">{t("createCourseView.addNewCourses")}</Title>
 
           <Form layout="vertical" form={form} onFinish={onFinish}>
@@ -84,7 +81,7 @@ export const CreateCoursesView: React.FC = () => {
             </Form.Item>
 
             <Form.Item
-              label={<span className="text-white text-base">{t("createCourseView.descriptionCourses")}</span>}
+              label={<span className="text-base">{t("createCourseView.descriptionCourses")}</span>}
               name="description"
               rules={[{ required: true, message: t("createCourseView.messageRulesDescriptions") }]}
             >
@@ -133,7 +130,7 @@ export const CreateCoursesView: React.FC = () => {
                   accept="image/*"
                   listType="picture"
                 >
-                  <Button icon={<UploadOutlined />}>{t("createCourseView.btnUploadImage")}</Button>
+                  <Button icon={<UploadOutlined />} size="large">{t("createCourseView.btnUploadImage")}</Button>
                 </Upload>
               </Form.Item>
 

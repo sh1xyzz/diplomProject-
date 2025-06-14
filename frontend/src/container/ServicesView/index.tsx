@@ -51,8 +51,8 @@ export const ServicesView = () => {
   return (
     <DefaultLayout>
       <section className="py-12 px-4">
-        <div className="bg-gray-900 p-10 rounded-xl mb-10">
-          <Title className="text-white text-center">
+        <div className="bg-[#1c1c28] p-10 rounded-xl mb-10">
+          <Title className="text-center">
             {t("servicesView.title")}
           </Title>
           <Text className="text-gray-400 text-center block mb-6">
@@ -61,7 +61,7 @@ export const ServicesView = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 text-gray-300">
             <div>
-              <h3 className="text-white font-semibold mb-1">
+              <h3 className="font-semibold mb-1">
                 {t("servicesView.businessConsultationsTitle")}
               </h3>
               <p className="text-sm text-gray-400">
@@ -69,7 +69,7 @@ export const ServicesView = () => {
               </p>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-1">
+              <h3 className="font-semibold mb-1">
                 {t("servicesView.legalAssistanceTitle")}
               </h3>
               <p className="text-sm text-gray-400">
@@ -115,7 +115,7 @@ export const ServicesView = () => {
           {servicesData.map((service, index) => (
             <div
               key={index}
-              className="bg-gray-800 p-6 rounded-xl shadow-md flex items-start gap-4"
+              className="bg-[#171722] p-6 rounded-xl shadow-md flex items-start gap-4"
             >
               <div>{service.icon}</div>
               <div>

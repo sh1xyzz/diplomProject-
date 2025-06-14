@@ -70,7 +70,7 @@ export const CoursesView = () => {
   return (
     <DefaultLayout>
       <section className="py-12 px-4">
-        <div className="bg-gray-900 p-10 rounded-xl mb-10 text-center">
+        <div className="bg-[#1c1c28] p-10 rounded-xl mb-10 text-center">
           <Title>
             {t("coursesView.title")}
             <span className="text-green-400">{t("coursesView.varnix")}</span>
@@ -89,7 +89,7 @@ export const CoursesView = () => {
               type="primary"
               icon={<PlusOutlined />}
               size="large"
-              disabled={!user}
+              disabled={!user || user.role !== "admin"}
               onClick={() => navigate("/add-course")}
             >
               {t("coursesView.addCourse")}

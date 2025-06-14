@@ -6,23 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up(): void
+    /**
+     * Run the migrations.
+     */
+    public function up()
     {
-       Schema::create('messages', function (Blueprint $table) {
+        Schema::create('replies', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('message_id')->index();
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table->string('name');
-            $table->string('email');
             $table->text('message');
+            $table->boolean('from_admin')->default(false);
             $table->timestamps();
         });
-        
-       
+
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('replies');
     }
 };

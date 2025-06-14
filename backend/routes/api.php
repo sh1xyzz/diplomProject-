@@ -10,7 +10,6 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UploadController;
 
-
 Route::post('/register', [register::class, 'register']);
 Route::post('/login', [login::class, 'login']);
 
@@ -20,17 +19,21 @@ Route::get('/courses/{id}', [CourseController::class, 'show']);
 Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 Route::put('/courses/{id}', [CourseController::class, 'update']);
 
-Route::post('/upload', [UploadController::class, 'upload']);
+Route::post('/upload-avatar', [UserController::class, 'uploadAvatar']);
+Route::get('/upload-avatar', [UserController::class, 'uploadAvatar']);
 
-Route::get('/tags', [TagController::class,'index']);
+Route::get('/tags', [TagController::class, 'index']);
 
-Route::post('/messages', [MessageController::class, 'store']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::get('/user/messages', [MessageController::class, 'index']);
+    Route::post('/messages', [MessageController::class, 'store']);
+    Route::post('/messages/{id}/reply', [MessageController::class, 'reply']);
+    Route::delete('/messages/{id}', [MessageController::class, 'destroy']);
+});
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 Route::get('/users', [UserController::class, 'index']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
-
-

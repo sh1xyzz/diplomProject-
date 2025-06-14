@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import {
   UserOutlined,
   CodeOutlined,
+  MessageOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Typography } from "antd";
 import { DefaultLayout } from "components/DefaultLayout";
 import { CoursesAdmin } from "container/AdminPanelView/CoursesAdmin";
 import { UsersAdmin } from "container/AdminPanelView/UsersAdmin";
 import { useTranslation } from "react-i18next"
+
+import { MessageAdmin } from "./MessageAdmin";
 
 const { Title } = Typography;
 const { Sider, Content } = Layout;
@@ -24,6 +27,8 @@ export const AdminPanelView = () => {
         return <UsersAdmin />;
       case "courses":
         return <CoursesAdmin />;
+      case "message":
+        return <MessageAdmin />;
       default:
         return null;
     }
@@ -44,7 +49,7 @@ export const AdminPanelView = () => {
           >
             <Menu.Item key="users" icon={<UserOutlined />}>{t("adminView.students")}</Menu.Item>
             <Menu.Item key="courses" icon={<CodeOutlined />}>{t("adminView.courses")}</Menu.Item>
-            {/* <Menu.Item key="ads" icon={<AppstoreOutlined />}>Announcements</Menu.Item> */}
+            <Menu.Item key="message" icon={<MessageOutlined />}>Message</Menu.Item>
           </Menu>
         </Sider>
 

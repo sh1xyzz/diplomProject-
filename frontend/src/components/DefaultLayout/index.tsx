@@ -9,7 +9,7 @@ import style from "./DefaultLayout.module.css";
 
 export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   return (
-    <div className={style.headerBlockContainer}>
+    <div className="bubbles">
       <Header />
       <div className={style.mainBlock}>{children}</div>
       <FloatingContactForm />

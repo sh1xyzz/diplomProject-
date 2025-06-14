@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import '@ant-design/v5-patch-for-react-19';
 import { GlobalOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Avatar, Dropdown, Badge, message } from "antd";
-import avatarUrl from "assets/image/avatar.jpg"
 import { LoginWindow } from "components/Login";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,6 +12,7 @@ export const Header: React.FC = () => {
   const [username, setUsername] = useState("");
   const [userRole, setUserRole] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   const [loginOpen, setLoginOpen] = useState(false);
   const { t, i18n } = useTranslation();
@@ -27,6 +27,10 @@ export const Header: React.FC = () => {
       setIsLoggedIn(true);
       setUsername(parsedUser.name || "Unknown");
       setUserRole(parsedUser.role || "user");
+
+      const avatarFileName = parsedUser.avatar || "";
+      setAvatarUrl(avatarFileName);
+
       setIsActive(true);
     }
   }, []);
@@ -48,23 +52,23 @@ export const Header: React.FC = () => {
     localStorage.setItem("token", userData.token);
     localStorage.setItem("user", JSON.stringify(userData.user));
 
+    console.log(JSON.parse(localStorage.getItem("user") || "{}"));
+
     setIsLoggedIn(true);
     setUsername(userData.user.name || "Unknown");
     setUserRole(userData.user.role || "user");
+    const avatarFileName = userData.user.avatar || "";
+    setAvatarUrl(avatarFileName);
+    
     setIsActive(true);
 
     message.success(t("header.messageSuccess"))
   };
 
-
   const menuItems = [
     {
       key: "profile",
       label: <Link to={`/profile/${username}`}>{t("header.menuProfile")}</Link>,
-    },
-    {
-      key: "settings",
-      label: <a href="/settings">{t("header.menuSettings")}</a>,
     },
     {
       key: "logout",
@@ -93,7 +97,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <header className="bg-gray-900 shadow-md relative">
+      <header className="bg-[#0e0e13] border-gray-700 border-b shadow-md relative">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="text-xl font-bold cursor-pointer"><Link to="/">{t("header.title")}</Link></div>
 
@@ -128,7 +132,7 @@ export const Header: React.FC = () => {
                   <Badge dot={isActive} color={isActive ? "green" : "red"}>
                     <Avatar
                       size={48}
-                      src={avatarUrl}
+                      src={avatarUrl ? `http://localhost:8000/storage/${avatarUrl}` : undefined}
                       icon={<UserOutlined />}
                       className="cursor-pointer translation-all duration-300 hover:scale-105"
                     />

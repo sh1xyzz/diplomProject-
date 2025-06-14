@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import {
   UserOutlined,
-  CameraOutlined,
   UploadOutlined,
   CloudDownloadOutlined,
   IdcardTwoTone,
@@ -10,8 +9,7 @@ import {
   SafetyOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Divider, Typography, Card } from "antd";
-import avatar from "assets/image/avatar.jpg";
+import { Avatar, Button, Divider, Typography, Card, Upload, message } from "antd";
 import { DefaultLayout } from "components/DefaultLayout";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
@@ -25,22 +23,69 @@ export const ProfileView = () => {
     name: string;
     role: string;
     created_at: string;
+    avatar?: string;
     status?: string;
   } | null>(null);
 
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  const [fileList, setFileList] = useState<any[]>([]);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+
+      if (parsedUser.avatar) {
+        setPreviewUrl(`http://localhost:8000/storage/${parsedUser.avatar}`);
+      }
     }
   }, []);
 
+
   if (!user) {
-    return <Paragraph className="text-center text-white">{t("profileView.loading")}</Paragraph>;
+    return <Paragraph className="text-center">{t("profileView.loading")}</Paragraph>;
   }
+
+  const handleUploadChange = ({ fileList }: any) => {
+    setFileList(fileList);
+    const file = fileList[0]?.originFileObj;
+    if (file) {
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!fileList.length || !user) return;
+
+    const formData = new FormData();
+    formData.append("avatar", fileList[0].originFileObj);
+    formData.append("user_id", String(user.id));
+
+    try {
+      const response = await fetch("http://localhost:8000/api/upload-avatar", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        const updatedUser = { ...user, avatar: data.user.avatar };
+        setUser(updatedUser);
+        setPreviewUrl(data.avatar_url);
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        message.success(t("profileView.messageSuccessAvatar"));
+      } else {
+        message.error(t("profileView.messageErrorAvatar"));
+      }
+    } catch (error) {
+      console.error(error);
+      message.error(t("profileView.messageErrorAvatar"));
+    }
+  };
 
   const goToAdminPanel = () => {
     navigate("/admin");
@@ -49,11 +94,15 @@ export const ProfileView = () => {
   return (
     <DefaultLayout>
       <section className="py-10 px-4 max-w-4xl mx-auto">
-        <div className="bg-gradient-to-r from-black via-gray-900 to-blue-900 to-black">
+        <div className="bg-gradient-to-br from-[#1c1c28] via-[#191924] to-[#0f0f1a]">
           <div className="flex items-center gap-4 p-6">
-            <Avatar size={64} src={avatar} />
+          <Avatar
+            size={64}
+            src={user.avatar ? `http://localhost:8000/storage/${user.avatar}` : undefined}
+            icon={!user.avatar && <UserOutlined />}
+          />
             <div>
-              <Title level={4} className="text-white m-0">
+              <Title level={4} className="m-0">
                 {user.name}
               </Title>
               <Text className="text-green-400 block text-sm">{t("profileView.textActive")}</Text>
@@ -61,7 +110,7 @@ export const ProfileView = () => {
           </div>
         </div>
 
-        <Card className="bg-gray-900 rounded-xl p-6">
+        <Card className="bg-gradient-to-br from-[#1c1c28] via-[#191924] to-[#0f0f1a] rounded-xl p-6">
           <div className="flex items-center justify-between">
             <div className=" items-center gap-6">
               <Text>
@@ -108,14 +157,27 @@ export const ProfileView = () => {
             </div>
 
             <div className="flex flex-col items-center gap-4">
-              <Button icon={<CameraOutlined />} type="text" size="large">
+              {/* <Button icon={<CameraOutlined />} type="text" size="large">
                 {t("profileView.btnUpdate")}
-              </Button>
-              <Avatar src={avatar} size={128} />
-              <Button icon={<UploadOutlined />} size="large">
-                {t("profileView.btnSelectImage")}
-              </Button>
-              <Button className="bg-green-500" icon={<CloudDownloadOutlined />} size="large">
+              </Button> */}
+              <Avatar 
+                className="bg-gray-800 border-blue-900" 
+                src={previewUrl || (user.avatar ? "http://localhost:8000/storage/${user.avatar}" : undefined)}
+                icon={!previewUrl && !user.avatar && <UserOutlined style={{ fontSize: 48 }}/>}
+                size={180} />
+              <Upload
+                  name="image"
+                  beforeUpload={() => false}
+                  onChange={handleUploadChange}
+                  fileList={fileList}
+                  maxCount={1}
+                  accept="image/*"
+                >
+                <Button icon={<UploadOutlined />} size="large">
+                  {t("profileView.btnSelectImage")}
+                </Button>
+              </Upload>
+              <Button className="bg-green-500" onClick={handleUpload} icon={<CloudDownloadOutlined />} size="large">
                 {t("profileView.btnUpload")}
               </Button>
             </div>
