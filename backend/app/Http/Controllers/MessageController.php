@@ -44,7 +44,7 @@ class MessageController extends Controller
         $message->email = $user->email;
         $message->message = $request->message;
         $message->user_id = $user->id;
-        $message->recipient_id = $admin->id; // Встановлюємо адміна як одержувача
+        $message->recipient_id = $admin->id;
         $message->save();
 
         return response()->json(['success' => true, 'messageId' => $message->id]);

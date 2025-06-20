@@ -72,39 +72,50 @@ export const us = {
         addCourse: "New course",
       },
       servicesView: {
-        titleMarketplace: "Marketplace Integration",
-        descriptionMarketplace: "Connect your store and start selling with our advanced tools.",
-        detailsMarketplace: "We provide tools and support to integrate with platforms like Shopify, Etsy, and WooCommerce. Our team ensures seamless onboarding and helps manage your inventory, payments, and logistics.",
-        titleStartup: "Startup Booster",
-        descriptionStartup: "Get tailored support to launch your business idea fast.",
-        detailsStartup: "We help you validate your idea, prepare MVPs, connect with investors, and understand the competitive landscape to speed up your product’s launch and growth.",
-        titleAutomation: "Automation Tools",
-        descriptionAutomation: "Automate your daily tasks with our built-in solutions.",
-        detailsAutomation: "Our automation suite includes scheduling, CRM integration, and marketing automation features. Save hours of routine work and focus on what matters most.",
-        titleSupport: "24/7 Support",
-        descriptionsSupport: "Our team is ready to help anytime, anywhere.",
-        detailsSupport: "Whether you’re launching a new feature or dealing with unexpected issues, our multilingual support team is always available to assist via chat, email, or phone.",
-        title: "Our Services",
+        titleMarketplace: "Digital platform integration",
+        descriptionMarketplace:
+          "Use modern educational services for effective learning.",
+        detailsMarketplace:
+          "I help work with platforms such as Google Classroom, Moodle, Zoom, and others. I advise on setup, assignment creation, and digital assessment.",
+        titleStartup: "Support for educational projects",
+        descriptionStartup:
+          "Assistance in implementing your ideas and research initiatives.",
+        detailsStartup:
+          "I support students in creating educational and competitive projects, writing research, preparing presentations, and participating in Olympiads, hackathons, and startup events.",
+        titleAutomation: "Learning automation",
+        descriptionAutomation:
+          "Optimize the learning process with IT tools.",
+        detailsAutomation:
+          "I teach how to use spreadsheets, macros, scripts, and other tools to automate everyday tasks — for both students and colleagues.",
+        titleSupport: "24/7 support",
+        descriptionsSupport:
+          "Always in touch for students, parents, and colleagues.",
+        detailsSupport:
+          "Computer science consultations, help with assignments, support in learning, and communication through convenient channels: messengers, mail, or in person.",
+        title: "My services",
         subtitle:
-          "Explore the range of services we offer to support your business.",
-        businessConsultationsTitle: "• Business consultations",
+          "A list of areas in which I support students and colleagues in the field of computer science.",
+        businessConsultationsTitle: "• Informatics consulting",
         businessConsultationsText:
-          "Professional support for strategic decisions and planning.",
-        legalAssistanceTitle: "• Legal assistance",
+          "Preparation for tests, GPA, external evaluations, Olympiads and thematic training.",
+        legalAssistanceTitle: "• Help with projects",
         legalAssistanceText:
-          "Help with business registration, contracts, and compliance.",
-        itDevelopmentTitle: "• IT & Development",
-        itDevelopmentText: "Websites, mobile apps, automation — all covered.",
-        marketingSupportTitle: "• Marketing support",
+          "Support in creating scientific, creative or IT projects and competitive works.",
+        itDevelopmentTitle: "• IT development",
+        itDevelopmentText:
+          "Creating websites, apps, mini-games, and educational services together with students.",
+        marketingSupportTitle: "• Preparation for participation in competitions",
         marketingSupportText:
-          "Promotion strategies, social media, and advertising help.",
-        financialGuidanceTitle: "• Financial guidance",
-        financialGuidanceText: "Bookkeeping, reporting, and investment advice.",
-        mentorshipProgramsTitle: "• Mentorship programs",
+          "Assistance with presentation, pitching and project defense.",
+        financialGuidanceTitle: "• Digital literacy",
+        financialGuidanceText:
+          "I teach safe work on the Internet, working with files, cloud services, and digital tools.",
+        mentorshipProgramsTitle: "• Mentoring",
         mentorshipProgramsText:
-          "Work with experienced entrepreneurs and scale faster.",
-        learnMore: "Learn More",
-        hide: "Hide",
+          "Individual support in learning programming, preparing for admission or participation in competitions.",
+        learnMore: "Learn more",
+        descriptionSupport: "Please contact me, I am always ready to help.",
+        hide: "hide"
       },
       loginWindow: {
         title: "Login",
@@ -338,6 +349,85 @@ export const us = {
         placeholderBio: "I love dogs, give me pleas a diploma",
         btnUpdate: "Update",
         btnCancel: "Cancel",
+      },
+      about: {
+        title: "About Us",
+        intro: "We are a forward-thinking digital platform designed to connect, empower, and inspire entrepreneurs, professionals, and organizations across industries. Our goal is to create meaningful digital experiences that enable growth, innovation, and collaboration.",
+        missionTitle: "Our Mission",
+        missionText: "Our mission is to bridge gaps between ideas and execution. We strive to support businesses and individuals by offering modern, scalable tools, community-driven insights, and trusted resources.",
+        valuesTitle: "Our Values",
+        valuesText: "We believe in transparency, collaboration, and constant innovation. Our team values every user and works hard to create a product that’s reliable, inclusive, and forward-compatible.",
+        whoTitle: "Who We Are",
+        whoText: "Our team is a diverse group of designers, developers, educators, and innovators passionate about shaping the future of digital platforms. With experience across startups, enterprises, and public sector projects — we bring together knowledge and dedication.",
+        offerTitle: "What We Offer",
+        offerText: "- A user-friendly interface powered by modern technology.\n- Secure tools for communication, education, and knowledge sharing.\n- Scalable architecture that grows with your needs.\n- Responsive support and a growing global community.",
+        joinTitle: "Join Us",
+        joinText: "Whether you're a new user, a contributor, or a partner — we welcome you to be part of our journey. Explore our platform, engage with the community, and let’s build something amazing together."
+      },  
+      terms: {
+        title: "Terms & Conditions",
+        intro: "Please read our terms and conditions carefully before using our platform.",
+        useTitle: "1. Use of the Platform",
+        useText: "You agree to use the platform in accordance with all applicable laws and not to use it for any unlawful purpose.",
+        accountTitle: "2. User Accounts",
+        accountText: "You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.",
+        privacyTitle: "3. Privacy Policy",
+        privacyText: "By using our platform, you agree to our privacy practices as described in the Privacy Policy.",
+        limitationTitle: "4. Limitation of Liability",
+        limitationText: "We are not liable for any damages that may arise from your use or inability to use the platform.",
+        changesTitle: "5. Changes to Terms",
+        changesText: "We reserve the right to update these terms at any time. Continued use of the platform means you accept the changes.",
+        contactTitle: "6. Contact Us",
+        contactText: "If you have any questions about these Terms, please contact our support team."
+      },
+      help: {
+        title: "Help & Support",
+        intro: "Need assistance? Find answers to common questions or contact our support team for help.",
+        faqTitle: "Frequently Asked Questions",
+        q1: "How do I reset my password?",
+        a1: "You can reset your password by clicking on 'Forgot Password' on the login page and following the instructions.",
+        q2: "How can I contact support?",
+        a2: "You can reach out to us through the Contact Us page or email us at support@example.com.",
+        q3: "Where can I find documentation?",
+        a3: "All documentation is available in the 'Resources' section of the platform.",
+        contactTitle: "Still Need Help?",
+        contactText: "If you didn’t find what you were looking for, don’t hesitate to contact our support team directly."
+      },
+      press: {
+        title: "Press",
+        intro: "Explore our latest news, media resources, and press coverage. For press inquiries, please get in touch.",
+        latestNews: "Latest News",
+        latestNewsText: "Stay updated with our latest announcements, product updates, and milestones.",
+        mediaKit: "Media Kit",
+        mediaKitText: "Download our official logos, brand guidelines, screenshots, and company facts for press use.",
+        contactTitle: "Contact Press Team",
+        contactText: "For interviews, media requests, or additional information, please email press@example.com."
+      },
+      careers: {
+        title: "Careers",
+        intro: "Join our team of passionate professionals and help shape the future. We are always looking for creative and driven individuals.",
+        whyJoin: "Why Join Us?",
+        whyJoinText: "We offer a collaborative work environment, opportunities for growth, and the chance to work on impactful projects that make a difference.",
+        openPositions: "Open Positions",
+        openPositionsText: "Check out our current job openings and find a role that matches your skills and interests.",
+        culture: "Our Culture",
+        cultureText: "We value diversity, innovation, and continuous learning. Our team supports each other to achieve great results.",
+        howToApply: "How to Apply",
+        howToApplyText: "Send your resume and cover letter to careers@example.com. We look forward to hearing from you!"
+      },
+      privacy: {
+        title: "Privacy Policy",
+        intro: "Your privacy is important to us. Learn how we collect, use, and protect your information.",
+        dataCollectionTitle: "Data Collection",
+        dataCollectionText: "We collect information you provide directly to us, such as when you create an account, update your profile, or communicate with us.",
+        dataUsageTitle: "How We Use Data",
+        dataUsageText: "The data we collect helps us provide, maintain, and improve our services, as well as personalize your experience.",
+        dataProtectionTitle: "Data Protection",
+        dataProtectionText: "We implement a variety of security measures to maintain the safety of your personal information.",
+        yourRightsTitle: "Your Rights",
+        yourRightsText: "You have the right to access, correct, or delete your personal data, and to object to certain data processing activities.",
+        contactTitle: "Contact Us",
+        contactText: "If you have any questions or concerns about our privacy policy, please contact us at privacy@example.com."
       }
     },
   },

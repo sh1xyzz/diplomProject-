@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
 
+import { About } from "components/Footer/About";
+import { Careers } from "components/Footer/Careers";
+import { Help } from "components/Footer/Help";
+import { Press } from "components/Footer/Press";
+import { Privacy } from "components/Footer/Privacy";
+import { Terms } from "components/Footer/Terms";
 import { AdminPanelView } from "container/AdminPanelView";
 import { CoursesView } from "container/CoursesView";
 import {CreateCoursesView} from "container/CoursesView/CreateCoursesView"
@@ -28,6 +34,13 @@ export const App = () => {
           
           <Route path="/add-course" element={<CreateCoursesView />} />
           <Route path="/courses/:id" element={<DetailCoursesView/>} />
+
+          <Route path="/about" element={<About />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/press" element={<Press />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
         </Routes>
     </BrowserRouter>
   );

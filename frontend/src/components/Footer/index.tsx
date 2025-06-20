@@ -10,6 +10,7 @@ import {
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -26,19 +27,19 @@ export const Footer: React.FC = () => {
           <h3 className="text-xl font-semibold mb-2">Company</h3>
           <ul className="space-y-1">
             <li>
-              <a href="/" className="text-gray-400 hover:text-white">
+              <Link to="/about" className="text-gray-400 hover:text-white">
                 {t("footer.linkAbout")}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/" className="text-gray-400 hover:text-white">
+              <Link to="/careers" className="text-gray-400 hover:text-white">
                 {t("footer.linkCareers")}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/" className="text-gray-400 hover:text-white">
+              <Link to="/press" className="text-gray-400 hover:text-white">
                 {t("footer.linkPress")}
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -49,19 +50,19 @@ export const Footer: React.FC = () => {
           </h3>
           <ul className="space-y-1">
             <li>
-              <a href="/" className="text-gray-400 hover:text-white">
+              <Link to="/help" className="text-gray-400 hover:text-white">
                 Help Center
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/" className="text-gray-400 hover:text-white">
+              <Link to="/terms" className="text-gray-400 hover:text-white">
                 {t("footer.linkTerms")}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/" className="text-gray-400 hover:text-white">
+              <Link to="/privacy" className="text-gray-400 hover:text-white">
                 {t("footer.linkPrivacy")}
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
